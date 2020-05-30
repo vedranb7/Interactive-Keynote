@@ -197,25 +197,11 @@
             }),
             color: '#2c3e50'
         }
-    };
-    var letters = Object.keys(keyData);
+    }
 
-    $("canvas").click(Clicked);
-    
-
-  function Clicked(event) {   //when clicking (or tapping on phone), activate a random key from keyData array
-      var letter = letters[Math.floor(Math.random() * letters.length)];
-      var maxPoint = new Point(view.size.width, view.size.height);
-      var randomPoint = Point.random();
-      var point = maxPoint * randomPoint;
-      var newCircle = new Path.Circle(point, 500);
-      newCircle.fillColor = keyData[letter].color;
-      keyData[letter].sound.play();
-      circles.push(newCircle);
-  };
     
     function onKeyDown(event) {
-      if(keyData[event.key]){
+        if(keyData[event.key]){
         var maxPoint = new Point(view.size.width, view.size.height);
         var randomPoint = Point.random();
         var point = maxPoint * randomPoint;
@@ -230,24 +216,20 @@
     function onFrame(event) {
         for (var i = 0; i < circles.length; i++) {
             circles[i].fillColor.hue += 1;
-            circles[i].scale(.9);
-	          if(circles[i].area < 1){
+            circles[i].scale(.9);  
+            if(circles[i].area < 1){
               circles[i].remove(); // remove the circle from the canvas
       	      circles.splice(i, 1); // remove the circle from the array
             }
-
         }
-    };
-
-  
+    }
 </script>
     
 </head>
 <body>
-    <h1 class="computer">PRESS A LETTER AND ENJOY THE BEATS!</h1>
-    <h1 class="phone">TAP ANYWHERE FOR MAGIC!</h1>
+    <h1>PRESS A LETTER AND ENJOY THE BEATS!</h1>
     <canvas id="myCanvas"></canvas>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
 </body>
 </html>
